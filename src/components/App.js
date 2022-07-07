@@ -5,6 +5,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import NavMenu from "./Nav_menu";
 import MyAcount from "./MyAcount";
+import Us from "./Us";
 
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/MyAcount" element={<MyAcount />} />
+        <Route path="/Us" element={<Us />} />
       </Routes>
       
       <ResetCSS />

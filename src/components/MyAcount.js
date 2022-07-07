@@ -1,13 +1,14 @@
 import styled from "styled-components"
+import { Link } from "react-router-dom";
 
 export default function MyAcount(){
     return(
         <Container>
-<h1>Home/ Minha conta</h1>
-<h1>Home/ Minha conta</h1>
-<h1>Entrar</h1>
-
-             <form>
+            <h1> <Link to={`/`} style={{ textDecoration: 'none' }}>Home/ </Link>
+                Minha conta</h1>
+            <h1>Home/ Minha conta</h1>
+            <h1>Entrar</h1>
+            <form>
                  <input placeholder="Pesquisar produto ..." type="text" />
                 <Button>Buscar</Button>
                
@@ -18,7 +19,7 @@ export default function MyAcount(){
 
 const Container = styled.div`
    
-    margin-top:120px;
+    margin-top:150px;
     background-color:#282F29;
     width: 100%;
     display: flex;
