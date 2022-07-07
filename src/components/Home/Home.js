@@ -1,53 +1,4 @@
 import styled from "styled-components";
-import homePhoto from "../assets/bebidas-home.jpeg";
-import { Oval } from "react-loader-spinner";
-import axios from "axios";
-import { useState, useEffect } from "react";
-
-export default function Home() {
-  const [productList, setProductList] = useState([]);
-  async function getHomeProducts() {
-    const response = await axios.get("http://localhost:5000/");
-    setProductList(response.data);
-  }
-
-  useEffect(() => getHomeProducts(), []);
-
-  return (
-    <HomeContainer>
-      <StyledWrapper>
-        <HomeImage src={homePhoto} alt="Vinhos diversos dispostos" />
-        <HomeBanner>
-          <p>
-            Seja bem vindo(a) à Empório Driven, <br /> frete grátis em pedidos
-            acima de R$ 300,00!
-          </p>
-        </HomeBanner>
-      </StyledWrapper>
-      <ProductList list={productList} />
-    </HomeContainer>
-  );
-}
-
-function ProductList({ list }) {
-  if (list.length > 0) {
-    return (
-      <>
-        {list.map((product, index) => {
-          return (
-            <StyledProduct key={index}>
-              <img src={product.image} />
-              <p>{product.name}</p>
-              <em>R$ {product.price.toFixed(2)}</em>
-            </StyledProduct>
-          );
-        })}
-      </>
-    );
-  } else {
-    return <Oval color="#ff8b1e" height={80} width={80} />;
-  }
-}
 
 const HomeContainer = styled.div`
   display: flex;
@@ -60,17 +11,26 @@ const HomeContainer = styled.div`
   padding-top: 25px;
 `;
 
+const ProductWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 85%;
+`;
+
 const StyledProduct = styled.div`
   display: flex;
   box-sizing: border-box;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  width: 85%;
+  width: 30%;
   background-color: #f5f5f0;
   border: 1px solid #e4dada;
   border-radius: 5px;
-  padding: 10px;
+  padding: 15px;
   margin-bottom: 25px;
 
   img {
@@ -106,6 +66,11 @@ const StyledWrapper = styled.div`
 const HomeImage = styled.img`
   width: 70%;
   border-radius: 3px;
+  filter: grayscale(10%);
+  object-fit: cover;
+  display: flex;
+  height: 500px;
+  object-position: 50% 30%;
 `;
 
 const HomeBanner = styled.div`
@@ -118,12 +83,22 @@ const HomeBanner = styled.div`
   justify-content: center;
   position: absolute;
   border-radius: 3px;
-  padding: 6px 0 6px 0;
+  padding: 15px 0 15px 0;
 
   p {
     font-family: "Rubik", sans-serif;
-    font-size: 15px;
+    font-size: 50px;
+    line-heigth: 52px;
     color: #ffffff;
     font-weigth: 400;
   }
 `;
+
+export {
+  HomeBanner,
+  HomeImage,
+  StyledWrapper,
+  StyledProduct,
+  ProductWrapper,
+  HomeContainer,
+};
