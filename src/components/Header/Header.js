@@ -1,40 +1,5 @@
 import styled from "styled-components";
-import Logo from "./Logo";
-import { Link } from "react-router-dom";
-import { IoMdPerson, IoIosCart } from "react-icons/io";
-
-
-
-export default function Header(){
- 
-    return(
-        <Container>
-             <Logo />
-             
-             <Search>
-                    <input placeholder="Pesquisar produto ..." type="text" />
-                     <Button>Buscar</Button>
-                </Search>
-                   <Link to={`/MyAcount`} style={{ textDecoration: 'none' }}>
-                <Acount>
-                    <Icon>
-                        <IoMdPerson color="#ffffff" size={"24px"} />
-                    </Icon>
-                        <h4>Faça seu login ou cadastre-se</h4>
-                    </Acount>
-                </Link>
-            
-             <Carts>
-                 <Icon><IoIosCart color="#ffffff" size={"24px"} /></Icon>
-                 <h4>R$</h4>
-            </Carts>
-
-     </Container>
-
-    )
-}
-
-const Container = styled.div`
+export const Container = styled.div`
     position:fixed;
     background-color:#ffffff;
     top:0;
@@ -47,17 +12,14 @@ const Container = styled.div`
     h1{
         font-size: 20px;
     }
-
-    
 `
-
-const Icon = styled.div`
+export const Icon = styled.div`
     background-color:#B23428;
     border-radius: 100%;
     height: 25px;
     width:25px;
 `
-const  Button = styled.div`
+export const  Button = styled.div`
     background-color:#B23428;
     color: #ffffff; 
     display: flex;
@@ -68,8 +30,7 @@ const  Button = styled.div`
     border-top-right-radius: 40px 30px;
     border-bottom-right-radius: 40px 30px;
 `
-   
-const Search = styled.div`
+export const Search = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -80,10 +41,9 @@ const Search = styled.div`
         border-top-left-radius: 40px 30px;
         border-bottom-left-radius: 40px 30px;
         font-size: 10px;
-             
     }
 `
-const Acount = styled.div`
+export const Acount = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -93,10 +53,9 @@ const Acount = styled.div`
         font-color: black;
         font-size: 15px;
     }
-
 `
-const Carts = styled.div`
-display: flex;
+export const Carts = styled.div`
+    display: flex;
     justify-content: space-between;
     align-items: center;
     h4{
