@@ -13,24 +13,24 @@ export default function NavMenu(){
              <Categories>
                 <Icon><IoMdWine color="#ffffff" size={"24px"} /></Icon>
                 <Cat>Vinho </Cat>
-                <Icon><IoMdArrowDropdown color="#ffffff" size={"24px"} /></Icon>
+                
              </Categories>
             
              <Categories>
                 <Icon><GiBeerBottle color="#ffffff" size={"24px"} /></Icon>
                 <Cat>Destilados  </Cat>
-                <Icon><IoMdArrowDropdown color="#ffffff" size={"24px"} /></Icon>
+               
              </Categories>
              
              <Categories>
                 <Icon><BiDrink color="#ffffff" size={"24px"} /></Icon>
                 <Cat>Espumantes  </Cat>
-                <Icon><IoMdArrowDropdown color="#ffffff" size={"24px"} /></Icon>
+               
              </Categories>
              <Categories>
              <Icon><IoMdBeer color="#ffffff" size={"24px"} /></Icon>
                 <Cat>Cervejas  </Cat>
-                <Icon><IoMdArrowDropdown color="#ffffff" size={"24px"} /></Icon>
+               
              </Categories>
              </Content>
         </Container>
@@ -39,12 +39,10 @@ export default function NavMenu(){
 
 const Container = styled.div`
     position:fixed;
+    position:relative;
     top:80px;
     background-color:#282F29;
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     height: 25px;
     padding: 10px 50px 20px 20px;
 h3{
@@ -69,6 +67,8 @@ const Cat = styled.div`
 color: #ffffff;
 `
 const Content = styled.div`
+    position: absolute;
+    left: 20%;
     display: flex;
     justify-content:space-between;
     align-items: center;

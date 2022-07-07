@@ -1,5 +1,6 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom";
+import Footer from "./Footer";
 
 export default function MyAcount(){
     return(
@@ -86,7 +87,7 @@ export default function MyAcount(){
                 <Button>Buscar</Button>
                
             </form>
-            
+           <Footer /> 
         </Container>
     )
 }
