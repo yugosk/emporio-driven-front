@@ -1,13 +1,13 @@
-import { HomeBanner, HomeImage, StyledWrapper, StyledProduct, ProductWrapper, HomeContainer } from './Home';
 import homePhoto from "../../assets/bebidas-home.jpeg";
 import { Oval } from "react-loader-spinner";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { HomeBanner, HomeImage, StyledWrapper, StyledProduct, ProductWrapper, HomeContainer } from './Home';
 
 export default function Home() {
   const [productList, setProductList] = useState([]);
   async function getHomeProducts() {
-    const response = await axios.get("http://http://emporio-driven.herokuapp.com/");
+    const response = await axios.get("http://emporio-driven.herokuapp.com/");
     setProductList(response.data);
   }
 
@@ -24,9 +24,7 @@ export default function Home() {
           </p>
         </HomeBanner>
       </StyledWrapper>
-      <ProductWrapper>
         <ProductList list={productList} />
-      </ProductWrapper>
     </HomeContainer>
   );
 }
@@ -34,7 +32,7 @@ export default function Home() {
 function ProductList({ list }) {
   if (list.length > 0) {
     return (
-      <>
+      <ProductWrapper>
         {list.map((product, index) => {
           return (
             <StyledProduct key={index}>
@@ -44,7 +42,7 @@ function ProductList({ list }) {
             </StyledProduct>
           );
         })}
-      </>
+      </ProductWrapper>
     );
   } else {
     return <Oval color="#ff8b1e" height={80} width={80} />;

@@ -69,7 +69,7 @@ const HomeImage = styled.img`
   filter: grayscale(10%);
   object-fit: cover;
   display: flex;
-  height: 500px;
+  height: 375px;
   object-position: 50% 30%;
 `;
 
