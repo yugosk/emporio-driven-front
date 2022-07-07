@@ -1,4 +1,4 @@
-import Logo from "../Logo/Logo";
+import Logo from "../Logo/Logo.jsx";
 import { Link } from "react-router-dom";
 import { IoMdPerson, IoIosCart } from "react-icons/io";
 import{Container, Icon, Button, Search,Acount, Carts} from "./Header"
