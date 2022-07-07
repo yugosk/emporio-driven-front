@@ -13,6 +13,80 @@ export default function MyAcount(){
                 <Button>Buscar</Button>
                
             </form>
+            <h1> <Link to={`/`} style={{ textDecoration: 'none' }}>Home/ </Link>
+                Minha conta</h1>
+            <h1>Home/ Minha conta</h1>
+            <h1>Entrar</h1>
+            <form>
+                 <input placeholder="Pesquisar produto ..." type="text" />
+                <Button>Buscar</Button>
+               
+            </form>
+            <h1> <Link to={`/`} style={{ textDecoration: 'none' }}>Home/ </Link>
+                Minha conta</h1>
+            <h1>Home/ Minha conta</h1>
+            <h1>Entrar</h1>
+            <form>
+                 <input placeholder="Pesquisar produto ..." type="text" />
+                <Button>Buscar</Button>
+               
+            </form>
+            <h1> <Link to={`/`} style={{ textDecoration: 'none' }}>Home/ </Link>
+                Minha conta</h1>
+            <h1>Home/ Minha conta</h1>
+            <h1>Entrar</h1>
+            <form>
+                 <input placeholder="Pesquisar produto ..." type="text" />
+                <Button>Buscar</Button>
+               
+            </form>
+            <h1> <Link to={`/`} style={{ textDecoration: 'none' }}>Home/ </Link>
+                Minha conta</h1>
+            <h1>Home/ Minha conta</h1>
+            <h1>Entrar</h1>
+            <form>
+                 <input pla
+                 ceholder="Pesquisar produto ..." type="text" />
+                <Button>Buscar</Button>
+               
+            </form>
+            <h1> <Link to={`/`} style={{ textDecoration: 'none' }}>Home/ </Link>
+                Minha conta</h1>
+            <h1>Home/ Minha conta</h1>
+            <h1>Entrar</h1>
+            <form>
+                 <input placeholder="Pesquisar produto ..." type="text" />
+                <Button>Buscar</Button>
+               
+            </form>
+            <h1> <Link to={`/`} style={{ textDecoration: 'none' }}>Home/ </Link>
+                Minha conta</h1>
+            <h1>Home/ Minha conta</h1>
+            <h1>Entrar</h1>
+            <form>
+                 <input placeholder="Pesquisar produto ..." type="text" />
+                <Button>Buscar</Button>
+               
+            </form>
+            <h1> <Link to={`/`} style={{ textDecoration: 'none' }}>Home/ </Link>
+                Minha conta</h1>
+            <h1>Home/ Minha conta</h1>
+            <h1>Entrar</h1>
+            <form>
+                 <input placeholder="Pesquisar produto ..." type="text" />
+                <Button>Buscar</Button>
+               
+            </form>
+            <h1> <Link to={`/`} style={{ textDecoration: 'none' }}>Home/ </Link>
+                Minha conta</h1>
+            <h1>Home/ Minha conta</h1>
+            <h1>Entrar</h1>
+            <form>
+                 <input placeholder="Pesquisar produto ..." type="text" />
+                <Button>Buscar</Button>
+               
+            </form>
+            
         </Container>
     )
 }
@@ -20,15 +94,15 @@ export default function MyAcount(){
 const Container = styled.div`
    
     margin-top:150px;
-    background-color:#282F29;
+   
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+   
     height: 25px;
     padding: 10px 50px 20px 20px;
 h3{
     color: #ffffff;
+    overflow-y: scroll;
+    scrollbar-width: none;
 }
        
 `

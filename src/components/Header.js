@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import Logo from "./Logo";
 import { Link } from "react-router-dom";
-import { IoMdPerson } from "react-icons/io";
-import { IoIosCart } from "react-icons/io";
+import { IoMdPerson, IoIosCart } from "react-icons/io";
+
 
 
 export default function Header(){
@@ -36,6 +36,7 @@ export default function Header(){
 
 const Container = styled.div`
     position:fixed;
+    background-color:#ffffff;
     top:0;
     width: 90%;
     height: 40px;

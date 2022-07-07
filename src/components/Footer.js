@@ -33,13 +33,14 @@ export default function Footer(){
 }
 
 const Container = styled.div`
-    position:fixed;
-    bottom:0;
+    
     width: 90%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
+    overflow-y: scroll;
+    scrollbar-width: none;
     
    
     h1{
