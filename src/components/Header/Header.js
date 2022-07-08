@@ -3,7 +3,7 @@ export const Container = styled.div`
   position: fixed;
   background-color: #ffffff;
   top: 0;
-  width: 90%;
+  width: 100%;
   height: 40px;
   display: flex;
   justify-content: space-between;
@@ -65,4 +65,11 @@ export const Carts = styled.div`
     font-color: black;
     font-size: 10px;
   }
+`;
+
+export const WhiteFiller = styled.div`
+  display: flex;
+  box-sizing: border-box;
+  width: 7%;
+  heigth: 100%;
 `;
