@@ -1,11 +1,30 @@
 import {Container, Imagem, Product, Button, Related, Details, Buy, Info, Buy2, RelatedProduct, Image,ButtonRelated, EachProduct} from "./ProductPage.js";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect} from "react";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 export default function ProductPage(){
 
- 
+    const name = useParams()
+    const [product, setProduct] = useState([]);
+    const [productList, setProductList] = useState([]);
+    
+    async function getProducts() {
+      const response = await axios.get(`http://http://emporio-driven.herokuapp.com/produto/${name}`);
+      setProduct(response.data);
+    }
+  
+    useEffect(() => getProducts(), [name]);
 
+    async function getHomeProducts() {
+        const response = await axios.get("http://http://emporio-driven.herokuapp.com/");
+        setProductList(response.data);
+        console.log(productList)
+      }
+    
+      useEffect(() => getHomeProducts(), []);
+    
+    
 
     return(
         <Container>
