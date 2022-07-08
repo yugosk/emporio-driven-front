@@ -1,29 +1,29 @@
-import sparklingPhoto from "../assets/champagne-glasses.jpeg";
+import spiritPhoto from "../../assets/sorted-spirit-bottles.jpeg";
 import { Oval } from "react-loader-spinner";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { HomeBanner, HomeImage, StyledWrapper, StyledProduct, ProductWrapper, HomeContainer } from './Home/Home.js';
+import { HomeBanner, HomeImage, StyledWrapper, StyledProduct, ProductWrapper, HomeContainer } from '../Home/Home.js';
   
-export default function Sparkling() {
-    const [sparklingList, setSparklingList] = useState([]);
-    async function getSparklingProducts() {
-        const response = await axios.get("http://emporio-driven.herokuapp.com/espumante");
-        setSparklingList(response.data);
+export default function Spirit() {
+    const [spiritList, setSpiritList] = useState([]);
+    async function getSpiritProducts() {
+        const response = await axios.get("http://emporio-driven.herokuapp.com/destilado");
+        setSpiritList(response.data);
     }
 
-    useEffect(() => getSparklingProducts(), []);
+    useEffect(() => getSpiritProducts(), []);
 
     return (
         <HomeContainer>
             <StyledWrapper>
-                <HomeImage src={sparklingPhoto} alt="Taças de espumante" />
+                <HomeImage src={spiritPhoto} alt="Diversas garrafas de destilados" />
                 <HomeBanner>
                     <p>
-                        Gostaria de celebrar alguma ocasião importante? <br /> Conte com a Empório Driven para o seu brinde!
+                        Cachaça, whisky, rum ou conhaque? <br /> Na Empório Driven você encontra de tudo!
                     </p>
                 </HomeBanner>
             </StyledWrapper>
-                <ProductList list={sparklingList} />
+                <ProductList list={spiritList} />
         </HomeContainer>
     );
 }

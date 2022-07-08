@@ -1,29 +1,29 @@
-import winePhoto from "../assets/wine-barrels.jpeg";
+import beerPhoto from "../../assets/beer-mugs.jpeg"
 import { Oval } from "react-loader-spinner";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { HomeBanner, HomeImage, StyledWrapper, StyledProduct, ProductWrapper, HomeContainer } from './Home/Home.js';
+import { HomeBanner, HomeImage, StyledWrapper, StyledProduct, ProductWrapper, HomeContainer } from '../Home/Home.js';
   
-export default function Wine() {
-    const [wineList, setWineList] = useState([]);
-    async function getWineProducts() {
-        const response = await axios.get("http://emporio-driven.herokuapp.com/vinho");
-        setWineList(response.data);
+export default function Beer() {
+    const [beerList, setBeerList] = useState([]);
+    async function getBeerProducts() {
+        const response = await axios.get("http://emporio-driven.herokuapp.com/cerveja");
+        setBeerList(response.data);
     }
 
-    useEffect(() => getWineProducts(), []);
+    useEffect(() => getBeerProducts(), []);
 
     return (
         <HomeContainer>
             <StyledWrapper>
-                <HomeImage src={winePhoto} alt="Diversos barris de fermentação" />
+                <HomeImage src={beerPhoto} alt="Diversas canecas de cerveja" />
                 <HomeBanner>
                     <p>
-                        Confira nossa seleção de vinhos, contamos <br /> com uma variedade nacional e importada!
+                        Confira nossa seleção de cervejas, <br /> frete grátis em pedidos acima de R$ 300,00!
                     </p>
                 </HomeBanner>
             </StyledWrapper>
-                <ProductList list={wineList} />
+                <ProductList list={beerList} />
         </HomeContainer>
     );
 }
