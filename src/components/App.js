@@ -10,22 +10,31 @@ import Wine from "./CategoryPages/CategoryWine.jsx";
 import Spirit from "./CategoryPages/CategorySpirit.jsx";
 import Sparkling from "./CategoryPages/CategorySparkling.jsx";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import UserContext from "../contexts/UserContext";
 
 export default function App() {
+  const [user, setUser] = useState({
+    name: "",
+    token: "",
+    cart: [{}],
+  });
+
   return (
-    <BrowserRouter>
-      <Header />
-      <NavMenu />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/MyAcount" element={<MyAcount />} />
-        <Route path="/Us" element={<Us />} />
-        <Route path="/cerveja" element={<Beer />} />
-        <Route path="/vinho" element={<Wine />} />
-        <Route path="/destilado" element={<Spirit />} />
-        <Route path="/espumante" element={<Sparkling />} />
-      </Routes>
-      <ResetCSS />
-    </BrowserRouter>
+    <UserContext.Provider value={{ user, setUser }}>
+      <BrowserRouter>
+        <Header />
+        <NavMenu />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/MyAcount" element={<MyAcount />} />
+          <Route path="/Us" element={<Us />} />
+          <Route path="/cerveja" element={<Beer />} />
+          <Route path="/vinho" element={<Wine />} />
+          <Route path="/destilado" element={<Spirit />} />
+          <Route path="/espumante" element={<Sparkling />} />
+        </Routes>
+        <ResetCSS />
+      </BrowserRouter>
+    </UserContext.Provider>
   );
 }
