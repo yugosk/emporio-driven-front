@@ -7,7 +7,7 @@ import { HomeBanner, HomeImage, StyledWrapper, StyledProduct, ProductWrapper, Ho
 export default function Wine() {
     const [wineList, setWineList] = useState([]);
     async function getWineProducts() {
-        const response = await axios.get("http://emporio-driven.herokuapp.com/vinho");
+        const response = await axios.get("https://emporio-driven.herokuapp.com/vinho");
         setWineList(response.data);
     }
 

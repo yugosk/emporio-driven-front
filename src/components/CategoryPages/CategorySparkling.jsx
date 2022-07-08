@@ -7,7 +7,7 @@ import { HomeBanner, HomeImage, StyledWrapper, StyledProduct, ProductWrapper, Ho
 export default function Sparkling() {
     const [sparklingList, setSparklingList] = useState([]);
     async function getSparklingProducts() {
-        const response = await axios.get("http://emporio-driven.herokuapp.com/espumante");
+        const response = await axios.get("https://emporio-driven.herokuapp.com/espumante");
         setSparklingList(response.data);
     }
 

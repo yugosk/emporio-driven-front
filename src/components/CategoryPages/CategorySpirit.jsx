@@ -7,7 +7,7 @@ import { HomeBanner, HomeImage, StyledWrapper, StyledProduct, ProductWrapper, Ho
 export default function Spirit() {
     const [spiritList, setSpiritList] = useState([]);
     async function getSpiritProducts() {
-        const response = await axios.get("http://emporio-driven.herokuapp.com/destilado");
+        const response = await axios.get("https://emporio-driven.herokuapp.com/destilado");
         setSpiritList(response.data);
     }
 

@@ -7,7 +7,7 @@ import { HomeBanner, HomeImage, StyledWrapper, StyledProduct, ProductWrapper, Ho
 export default function Home() {
   const [productList, setProductList] = useState([]);
   async function getHomeProducts() {
-    const response = await axios.get("http://emporio-driven.herokuapp.com/");
+    const response = await axios.get("https://emporio-driven.herokuapp.com/");
     setProductList(response.data);
   }
 

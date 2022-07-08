@@ -7,7 +7,7 @@ import { HomeBanner, HomeImage, StyledWrapper, StyledProduct, ProductWrapper, Ho
 export default function Beer() {
     const [beerList, setBeerList] = useState([]);
     async function getBeerProducts() {
-        const response = await axios.get("http://emporio-driven.herokuapp.com/cerveja");
+        const response = await axios.get("https://emporio-driven.herokuapp.com/cerveja");
         setBeerList(response.data);
     }
 
