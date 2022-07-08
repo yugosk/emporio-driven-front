@@ -3,47 +3,43 @@ import { Link } from "react-router-dom";
 import { useState, useEffect} from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { Oval } from "react-loader-spinner";
 export default function ProductPage(){
-
-    const name = useParams()
-    const [product, setProduct] = useState([]);
-    const [productList, setProductList] = useState([]);
-    
+    const {product, category} = useParams()
+    const [productRender, setProductRender] = useState([]);
+    const [categoryRender, setcategoryRender] = useState([]);
     async function getProducts() {
-      const response = await axios.get(`http://http://emporio-driven.herokuapp.com/produto/${name}`);
-      setProduct(response.data);
+       try {
+        const response = await axios.get(`http://http://emporio-driven.herokuapp.com/${category}/${product}`);
+        const categoria = await axios.get(`http://http://emporio-driven.herokuapp.com/${category}`)
+        setProductRender(response.data);
+        setcategoryRender(categoria.data)
+       } catch (error) {
+         return error
+         
+       }
+      
     }
-  
-    useEffect(() => getProducts(), [name]);
-
-    async function getHomeProducts() {
-        const response = await axios.get("http://http://emporio-driven.herokuapp.com/");
-        setProductList(response.data);
-        console.log(productList)
-      }
-    
-      useEffect(() => getHomeProducts(), []);
-    
-    
-
+     useEffect(() => getProducts(), [category, product]);
+     console.log(categoryRender)
     return(
         <Container>
             <h1> 
                 <Link to={`/`} style={{ textDecoration: 'none' }}>Início/ </Link>
-                <Link to={`/`} style={{ textDecoration: 'none' }}>Vinhos/ </Link>
-                Vinho Amitie Colheita Terroir Shiraz 750ml
+                <Link to={`/`} style={{ textDecoration: 'none' }}>{productRender.category}/ </Link>
+                {productRender.name}
             </h1>
           <Product>
               <Imagem>
-                  Oi
+                  {productRender.image}
               </Imagem>
               <Info>
                 <Details>
-                <h2>Vinho Amitie Colheita Terroir Shiraz 750ml</h2>
-                <h3>R$115,50</h3>
+                <h2>{productRender.name}</h2>
+                <h3>R${productRender.price}</h3>
                 </Details>
                 <Buy>
-                    <h4>6 em estoque</h4>
+                    <h4>{productRender.inventory} em estoque</h4>
                     <Buy2>
                     <input placeholder="0" type="number"/>
                     <Button>Comprar</Button>
@@ -53,6 +49,7 @@ export default function ProductPage(){
              </Product>  
           <Related>
               <h3>Produtos Relacionados</h3>
+              <ProductList list={categoryRender} />
               <RelatedProduct>
                   <EachProduct>
                   <Image>
@@ -87,8 +84,25 @@ export default function ProductPage(){
                 <ButtonRelated>Comprar</ButtonRelated>
                   </EachProduct>
               </RelatedProduct>
-              
           </Related>
         </Container>
     )
+}
+
+function ProductList({ list }) {
+  if (list.length > 0) {
+    return (
+      <>
+        {list.map((product) => {
+          return (
+            
+              <p>{product.name}</p>
+             
+          );
+        })}
+      </>
+    );
+  } else {
+    return <Oval color="#ff8b1e" height={80} width={80} />;
+  }
 }

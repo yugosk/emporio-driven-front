@@ -122,3 +122,6 @@ export const Image = styled.div`
     width:150px;
     height: 140px;
  `
+ export const StyledProduct = styled.div`
+ `
+ export const ProductList = styled.div``
