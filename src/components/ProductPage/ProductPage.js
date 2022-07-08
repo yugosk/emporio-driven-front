@@ -92,14 +92,13 @@ export const RelatedProduct = styled.div`
     
 `
 export const EachProduct = styled.div`
-    width: 230px;
+    width: 250px;
     background-color:#F5F5F0;
     margin-left:20px;
     display:flex;
     justify-content:space-between;
     align-itens:center;
     flex-direction: column;
-    width:80%;
     &:hover ${ButtonRelated} {
         display:  block;
         z-index: 1;
@@ -119,8 +118,11 @@ export const EachProduct = styled.div`
        }
 `
 export const Image = styled.div`
-    width:150px;
-    height: 140px;
+    
+    img{
+        width:150px;
+        height: 140px;
+    }
  `
  export const StyledProduct = styled.div`
  `

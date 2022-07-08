@@ -10,28 +10,32 @@ export default function ProductPage(){
     const [categoryRender, setcategoryRender] = useState([]);
     async function getProducts() {
        try {
-        const response = await axios.get(`http://http://emporio-driven.herokuapp.com/${category}/${product}`);
-        const categoria = await axios.get(`http://http://emporio-driven.herokuapp.com/${category}`)
+        const response = await axios.get(`http://emporio-driven.herokuapp.com/${category}/${product}`);
         setProductRender(response.data);
-        setcategoryRender(categoria.data)
-       } catch (error) {
+        } catch (error) {
          return error
-         
        }
-      
-    }
+      }
      useEffect(() => getProducts(), [category, product]);
-     console.log(categoryRender)
+     async function getCategory() {
+      try {
+        const categoria = await axios.get(`http://emporio-driven.herokuapp.com/${category}`)
+       setcategoryRender(categoria.data)
+      } catch (error) {
+        return error
+       }
+    }
+    useEffect(() => getCategory(), [category, product]);
     return(
         <Container>
             <h1> 
                 <Link to={`/`} style={{ textDecoration: 'none' }}>Início/ </Link>
-                <Link to={`/`} style={{ textDecoration: 'none' }}>{productRender.category}/ </Link>
+                <Link to={`/`} style={{ textDecoration: 'none' }}>{category}/ </Link>
                 {productRender.name}
             </h1>
           <Product>
               <Imagem>
-                  {productRender.image}
+              <img src={productRender.image} />
               </Imagem>
               <Info>
                 <Details>
@@ -49,56 +53,66 @@ export default function ProductPage(){
              </Product>  
           <Related>
               <h3>Produtos Relacionados</h3>
-              <ProductList list={categoryRender} />
+             
               <RelatedProduct>
-                  <EachProduct>
-                  <Image>
-                    Oi
-                </Image>
-                <h4>Vinho Quinta do Crasto Vinha da Ponte 750ml</h4>
-                <h5>R$2.375,00</h5>
-                <ButtonRelated>Comprar</ButtonRelated>
-                  </EachProduct>
-                  <EachProduct>
-                  <Image>
-                    Oi
-                </Image>
-                <h4>Vinho Quinta do Crasto Vinha da Ponte 750ml</h4>
-                <h5>R$2.375,00</h5>
-                <ButtonRelated>Comprar</ButtonRelated>
-                  </EachProduct>
-                  <EachProduct>
-                  <Image>
-                    Oi
-                </Image>
-                <h4>Vinho Quinta do Crasto Vinha da Ponte 750ml</h4>
-                <h5>R$2.375,00</h5>
-                <ButtonRelated>Comprar</ButtonRelated>
-                  </EachProduct>
-                  <EachProduct>
-                  <Image>
-                    Oi
-                </Image>
-                <h4>Vinho Quinta do Crasto Vinha da Ponte 750ml</h4>
-                <h5>R$2.375,00</h5>
-                <ButtonRelated>Comprar</ButtonRelated>
-                  </EachProduct>
+              <ProductList list={categoryRender} />
+                
               </RelatedProduct>
           </Related>
         </Container>
     )
 }
-
 function ProductList({ list }) {
   if (list.length > 0) {
     return (
       <>
         {list.map((product) => {
           return (
-            
-              <p>{product.name}</p>
-             
-          );
+            <>
+              <EachProduct>
+              <Image>
+                  <img src={product.image} />
+              </Image>
+              <h4>{product.name}</h4>
+              <h5>R${product.price}</h5>
+              <ButtonRelated>Comprar</ButtonRelated>
+            </EachProduct>
+
+            <EachProduct>
+              <Image>
+                  <img src={product.image} />
+              </Image>
+              <h4>{product.name}</h4>
+              <h5>R${product.price}</h5>
+              <ButtonRelated>Comprar</ButtonRelated>
+            </EachProduct>
+
+            <EachProduct>
+              <Image>
+                  <img src={product.image} />
+              </Image>
+              <h4>{product.name}</h4>
+              <h5>R${product.price}</h5>
+              <ButtonRelated>Comprar</ButtonRelated>
+            </EachProduct>
+            <EachProduct>
+              <Image>
+                  <img src={product.image} />
+              </Image>
+              <h4>{product.name}</h4>
+              <h5>R${product.price}</h5>
+              <ButtonRelated>Comprar</ButtonRelated>
+            </EachProduct>
+            <EachProduct>
+              <Image>
+                  <img src={product.image} />
+              </Image>
+              <h4>{product.name}</h4>
+              <h5>R${product.price}</h5>
+              <ButtonRelated>Comprar</ButtonRelated>
+            </EachProduct>
+            </>
+         );
         })}
       </>
     );
