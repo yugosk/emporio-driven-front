@@ -20,14 +20,12 @@ export default function MyAcount(){
     function singUp(event){
         event.preventDefault();
         setLoading(true);
-        
         const body = {
             name: cadastroName,           
             email: cadastroEmail,
             password: cadastroPassword,
             password_confirmation: password_confirmation
         }
-        console.log(body)
         const promise = axios.post('http://emporio-driven.herokuapp.com/cadastrar', body)
         promise.then(() => navigate("/minhaconta"))
         promise.catch((e) => {
@@ -79,8 +77,8 @@ export default function MyAcount(){
                     </Box>
                     <Box>
                         <h4>Cadastre-se</h4>
-                        <h5>Nome de usuário*</h5>                        <input placeholder="" type="text"  onChange={e => setCadastroName(e.target.value)}  value={cadastroName} disabled={Loading} required />
-
+                        <h5>Nome de usuário*</h5>    
+                        <input placeholder="" type="text"  onChange={e => setCadastroName(e.target.value)}  value={cadastroName} disabled={Loading} required />
                         <h5>Nome de usuário ou e-mail *</h5>
                         <input placeholder="" type="email" onChange={e => setcadastroEmail(e.target.value)}  value={cadastroEmail} disabled={Loading} required />
                         <h5>Senha *</h5>
