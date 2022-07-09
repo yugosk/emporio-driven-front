@@ -8,6 +8,7 @@ export default function ProductPage(){
     const {product, category} = useParams()
     const [productRender, setProductRender] = useState([]);
     const [categoryRender, setcategoryRender] = useState([]);
+    const [quantity, setQuantity] = useState([])
     async function getProducts() {
        try {
         const response = await axios.get(`http://emporio-driven.herokuapp.com/${category}/${product}`);
@@ -26,6 +27,13 @@ export default function ProductPage(){
        }
     }
     useEffect(() => getCategory(), [category, product]);
+
+    function comprar(){
+      if (quantity < 0){
+        alert("Digite um número maior que 1")
+      }
+
+    }
     return(
         <Container>
             <h1> 
@@ -45,8 +53,8 @@ export default function ProductPage(){
                 <Buy>
                     <h4>{productRender.inventory} em estoque</h4>
                     <Buy2>
-                    <input placeholder="0" type="number"/>
-                    <Button>Comprar</Button>
+                     <input type="number" placeholder="0" min="0" onChange={e => setQuantity(e.target.value)}  value={quantity}/>
+                    <Button onClick={comprar}>Comprar</Button>
                     </Buy2>
                   </Buy>
               </Info>

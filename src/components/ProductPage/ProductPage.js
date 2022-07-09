@@ -58,6 +58,7 @@ export const Buy2 = styled.div`
         width:40px;
         margin-right: 15px;
     }
+    
 `
 export const Details = styled.div`
     border-bottom: 1px solid #D3D3D3;
