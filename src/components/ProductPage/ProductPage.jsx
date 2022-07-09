@@ -28,7 +28,7 @@ export default function ProductPage(){
     }
     useEffect(() => getCategory(), [category, product]);
 
-    function comprar(){
+    function Comprar(){
       if (quantity < 0){
         alert("Digite um número maior que 1")
       }
@@ -54,7 +54,7 @@ export default function ProductPage(){
                     <h4>{productRender.inventory} em estoque</h4>
                     <Buy2>
                      <input type="number" placeholder="0" min="0" onChange={e => setQuantity(e.target.value)}  value={quantity}/>
-                    <Button onClick={comprar}>Comprar</Button>
+                    <Button onClick={Comprar}>Comprar</Button>
                     </Buy2>
                   </Buy>
               </Info>
