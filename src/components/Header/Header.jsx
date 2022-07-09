@@ -10,7 +10,7 @@ export default function Header(){
                     <input placeholder="Pesquisar produto ..." type="text" />
                      <Button>Buscar</Button>
                 </Search>
-                   <Link to={`/MyAcount`} style={{ textDecoration: 'none' }}>
+                   <Link to={`/minhaconta`} style={{ textDecoration: 'none' }}>
                 <Acount>
                     <Icon>
                         <IoMdPerson color="#ffffff" size={"24px"} />

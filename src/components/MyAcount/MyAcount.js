@@ -17,7 +17,7 @@ export const Container = styled.div`
 `
 export const Registration = styled.div`
 `
-export const Login = styled.div`
+export const Loginrender = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: flex-start;

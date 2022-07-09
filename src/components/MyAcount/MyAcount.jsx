@@ -1,9 +1,9 @@
-import {Container, Login, Registration, Box, Button} from "./MyAcount"
+import {Container, Registration, Box, Loginrender} from "./MyAcount"
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import axios from 'axios';
 import { useState } from "react";
-import UserContext from './contexts/UserContext';
+import UserContext from "../../contexts/UserContext";
 import { ThreeDots } from  'react-loader-spinner';
 export default function MyAcount(){
     const {dados, setDados} = useContext(UserContext);
@@ -14,10 +14,32 @@ export default function MyAcount(){
     const [cadastroName, setCadastroName] = useState([]);
     const [password_confirmation, setpassword_confirmation] = useState([]);
     const [Loading, setLoading] = useState(false);
+    const navigate = useNavigate();
     
-    function Login(event){
-        setLoading(true);
+   
+    function singUp(event){
         event.preventDefault();
+        setLoading(true);
+        
+        const body = {
+            name: cadastroName,           
+            email: cadastroEmail,
+            password: cadastroPassword,
+            password_confirmation: password_confirmation
+        }
+        console.log(body)
+        const promise = axios.post('http://emporio-driven.herokuapp.com/cadastrar', body)
+        promise.then(() => navigate("/minhaconta"))
+        promise.catch((e) => {
+            alert("Campos invalidos, verifique preenchimento.");
+            setLoading(false);
+          });
+       
+    }
+
+    function Login(e){
+        setLoading(true);
+        e.preventDefault();
         const dadosLogin = {
             email: loginemail,
             password: loginpassword,
@@ -36,25 +58,6 @@ export default function MyAcount(){
             setloginEmail("")
           });
     }
-    function singUp(event){
-        console.log("here")
-        event.preventDefault();
-        setLoading(true);
-        const body = {
-            name: cadastroName,           
-            email: cadastroEmail,
-            password: cadastroPassword,
-            password_confirmation: password_confirmation
-        }
-        console.log(body)
-        const promise = axios.post('http://emporio-driven.herokuapp.com/cadastrar', body)
-        promise.then(() => navigate("/myAcount"))
-        promise.catch((e) => {
-            alert("Campos invalidos, verifique preenchimento.");
-            setLoading(false);
-          });
-       
-    }
     return(
         <Container>
                 <h4> 
@@ -62,7 +65,7 @@ export default function MyAcount(){
                     Minha conta
                 </h4>
                 <h1>Minha conta</h1>
-                 <Login>
+                 <Loginrender>
                     <Box>
                         <h4>Entrar</h4>
                         <h5>E-mail *</h5>
@@ -76,8 +79,8 @@ export default function MyAcount(){
                     </Box>
                     <Box>
                         <h4>Cadastre-se</h4>
-                        <h5>Nome de usuário*</h5>
-                        <input placeholder="" type="text"  onChange={e => setCadastroName(e.target.value)}  value={cadastroName} disabled={Loading} required />
+                        <h5>Nome de usuário*</h5>                        <input placeholder="" type="text"  onChange={e => setCadastroName(e.target.value)}  value={cadastroName} disabled={Loading} required />
+
                         <h5>Nome de usuário ou e-mail *</h5>
                         <input placeholder="" type="email" onChange={e => setcadastroEmail(e.target.value)}  value={cadastroEmail} disabled={Loading} required />
                         <h5>Senha *</h5>
@@ -89,7 +92,7 @@ export default function MyAcount(){
                             ("Cadastre-se")}
                         </button>
                     </Box>
-                </Login>
+                </Loginrender>
                 <Registration>
                 </Registration>
         </Container>
