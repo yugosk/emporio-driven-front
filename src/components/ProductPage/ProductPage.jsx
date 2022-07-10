@@ -11,13 +11,14 @@ export default function ProductPage(){
     const [quantity, setQuantity] = useState([])
     async function getProducts() {
        try {
-        const response = await axios.get(`http://emporio-driven.herokuapp.com/${category}/${product}`);
+        const response = await axios.get(`http://emporio-driven.herokuapp.com/${category}?/${product}`, {category, product});
         setProductRender(response.data);
         } catch (error) {
          return error
        }
+       console.log(productRender.name)
       }
-     useEffect(() => getProducts(), [category, product]);
+     useEffect(() => getProducts(), [product]);
      async function getCategory() {
       try {
         const categoria = await axios.get(`http://emporio-driven.herokuapp.com/${category}`)
@@ -26,7 +27,7 @@ export default function ProductPage(){
         return error
        }
     }
-    useEffect(() => getCategory(), [category, product]);
+    useEffect(() => getCategory(), [{category, product}]);
 
     function Comprar(){
       if (quantity < 0){
@@ -34,7 +35,8 @@ export default function ProductPage(){
       }
 
     }
-    return(
+
+        return(
         <Container>
             <h1> 
                 <Link to={`/`} style={{ textDecoration: 'none' }}>Início/ </Link>
@@ -43,7 +45,7 @@ export default function ProductPage(){
             </h1>
           <Product>
               <Imagem>
-              <img src={productRender.image} />
+              <img src={productRender.image} alt="imagem do produto" />
               </Imagem>
               <Info>
                 <Details>
@@ -70,55 +72,23 @@ export default function ProductPage(){
         </Container>
     )
 }
-function ProductList({ list }) {
+function ProductList({ list, index }) {
   if (list.length > 0) {
     return (
       <>
         {list.map((product) => {
           return (
             <>
-              <EachProduct>
+              <EachProduct key ={index}>
               <Image>
-                  <img src={product.image} />
+                  <img src={product.image} alt="Girl in a jacket" />
               </Image>
               <h4>{product.name}</h4>
               <h5>R${product.price}</h5>
               <ButtonRelated>Comprar</ButtonRelated>
             </EachProduct>
 
-            <EachProduct>
-              <Image>
-                  <img src={product.image} />
-              </Image>
-              <h4>{product.name}</h4>
-              <h5>R${product.price}</h5>
-              <ButtonRelated>Comprar</ButtonRelated>
-            </EachProduct>
-
-            <EachProduct>
-              <Image>
-                  <img src={product.image} />
-              </Image>
-              <h4>{product.name}</h4>
-              <h5>R${product.price}</h5>
-              <ButtonRelated>Comprar</ButtonRelated>
-            </EachProduct>
-            <EachProduct>
-              <Image>
-                  <img src={product.image} />
-              </Image>
-              <h4>{product.name}</h4>
-              <h5>R${product.price}</h5>
-              <ButtonRelated>Comprar</ButtonRelated>
-            </EachProduct>
-            <EachProduct>
-              <Image>
-                  <img src={product.image} />
-              </Image>
-              <h4>{product.name}</h4>
-              <h5>R${product.price}</h5>
-              <ButtonRelated>Comprar</ButtonRelated>
-            </EachProduct>
+         
             </>
          );
         })}
