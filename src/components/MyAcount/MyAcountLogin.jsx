@@ -26,7 +26,7 @@ export default function MyAcountLogin(){
             setDados(response.data);
             const serializedUser = JSON.stringify(dados);
             localStorage.setItem("user", serializedUser);
-           navigate("/");
+           navigate("/dadoscompra");
           });
          promise.catch((e) => {
             alert("Login ou senha não correspondem, tente novamente.");
