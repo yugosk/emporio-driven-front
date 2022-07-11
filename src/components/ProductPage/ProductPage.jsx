@@ -13,7 +13,7 @@ export default function ProductPage(){
 
     async function getProducts() {
        try {
-        const response = await axios.get(`http://localhost:5000/produto/${product}`);
+        const response = await axios.get(`https://emporio-driven.herokuapp.com/produto/${product}`);
         console.log(response.data);
         setProductRender(response.data.product);
         setcategoryRender(response.data.suggestions);
