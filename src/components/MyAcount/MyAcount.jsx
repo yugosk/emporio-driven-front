@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import axios from 'axios';
 import { useState } from "react";
-import UserContext from "../contexts/UserContext";
+import UserContext from "../../contexts/UserContext";
 import { ThreeDots } from  'react-loader-spinner';
 export default function MyAcount(){
     const {dados, setDados} = useContext(UserContext);
