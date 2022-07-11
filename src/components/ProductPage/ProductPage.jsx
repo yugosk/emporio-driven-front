@@ -1,15 +1,18 @@
 import {Container, Imagem, Product, Button, Related, Details, Buy, Info, Buy2, RelatedProduct, Image,ButtonRelated, EachProduct} from "./ProductPage.js";
 import { Link } from "react-router-dom";
-import { useState, useEffect} from "react";
+import { useState, useEffect, useContext} from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
+import CartContext from "../../contexts/CartContext.js";
 
 export default function ProductPage(){
     const { product } = useParams()
     const [productRender, setProductRender] = useState([]);
     const [categoryRender, setcategoryRender] = useState([]);
     const [quantity, setQuantity] = useState([]);
+    const { cart } = useContext(CartContext);
+    const [newCart, setNewCart] = useState(cart);
 
     async function getProducts() {
        try {
@@ -23,8 +26,24 @@ export default function ProductPage(){
       }
      useEffect(() => getProducts(), [product]);
 
-    function Comprar(){
-      
+    function Comprar(name, quantity){
+      const auxArray = newCart.filter(item => item.name !== name);
+      if (auxArray.length !== newCart.length) {
+        for (let i=0; i<newCart.length; i++) {
+          if (newCart[i].name === name) {
+            let aux = newCart[i].quantity;
+            aux += quantity;
+            newCart[i].quantity = aux;
+          }
+        }
+      } else {
+        setNewCart(...newCart, {
+          name: productRender.name,
+          price: productRender.price,
+          image: productRender.image,
+          quantity: quantity
+        })
+      }
     }
 
         return(
@@ -46,8 +65,8 @@ export default function ProductPage(){
                 <Buy>
                     <h4>{productRender.inventory} em estoque</h4>
                     <Buy2>
-                     <input type="number" placeholder="0" min="1" onChange={e => setQuantity(e.target.value)}  value={quantity}/>
-                    <Button onClick={Comprar}>Comprar</Button>
+                     <input type="number" placeholder="0" min="1" max={productRender.inventory} onChange={e => setQuantity(e.target.value)}  value={quantity}/>
+                    <Button onClick={Comprar(product.name, quantity)}>Comprar</Button>
                     </Buy2>
                   </Buy>
               </Info>
