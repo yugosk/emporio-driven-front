@@ -6,8 +6,6 @@ import { Link } from "react-router-dom";
 import { TiDelete } from "react-icons/ti"
 import { useNavigate } from "react-router-dom";
 
-
-
 export default function Cart() {
     const { user } = useContext(UserContext);
     const [cart, setCart] = useState([...user.cart]);
