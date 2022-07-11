@@ -13,6 +13,7 @@ import Home from "./Home/Home.jsx";
 import CategoryPages from "./CategoryPages/CategoryPages.jsx";
 import Cart from "./ShoppingCart/ShoppingCart.jsx";
 import ProductPage from "./ProductPage/ProductPage.jsx";
+import FinishPurchase from "./FinishPurchase/FinishPurchase.jsx";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
 export default function App() {
@@ -35,6 +36,7 @@ export default function App() {
               <Route path="/:category" element={<CategoryPages />} />
               <Route path="/carrinho" element={<Cart />} />
               <Route path="/:category/:product" element={<ProductPage />} />
+              <Route path="/finalizar-compra" element={<FinishPurchase />} />
             </Routes>
             <ResetCSS />
           </BrowserRouter>
