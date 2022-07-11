@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   margin-left: 20%;
-  margin-top: 80px;
+  margin-top: 130px;
   width: 80%;
   overflow-y: scroll;
   scrollbar-width: none;
