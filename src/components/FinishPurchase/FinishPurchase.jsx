@@ -13,7 +13,7 @@ export default function FinishPurchase() {
     const { dados } = useContext(UserContext);
     const { cart } = useContext(CartContext);
 
-    function finishPurchase() {
+    async function finishPurchase() {
         const response = await axios.post("https://emporio-driven.herokuapp.com/compras", cart, {
             headers: {
                 "Authorization": `Bearer ${dados.token}`,
