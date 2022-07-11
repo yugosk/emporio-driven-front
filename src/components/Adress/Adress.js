@@ -1,6 +1,6 @@
 import styled from "styled-components"
 export const Container = styled.div`
-        width: 70%;
+        width: 80%;
         margin-left:20%;
         margin-top:90px;
         overflow-y: scroll;
@@ -15,32 +15,23 @@ export const Container = styled.div`
         font-size:40px;
     }
 `
-export const Registration = styled.div`
-`
-export const Loginrender = styled.div`
+export const Login = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-`
-export const Box = styled.div`
-    border: 0.8px solid #D3D3D3;
-    width:450px;
-    padding: 10px 50px 20px 20px;
+    flex-direction: column;
+    margin: 10px 50px 20px 20px;
+    h5, input{
+        margin: 1px 5px 1px 0px;
+    }
     input{
+        margin: 5px 5px 5px 5px;
         border: 1px solid #ccc;
         border-color: #D3D3D3;
-        margin: 10px 50px 20px 20px;
-        height: 40px;
+        margin: 5px 50px 5px 20px;
+        height: 30px;
         width: 380px;
         font-size: 10px;
-    }
-    h4{
-        margin: 10px 50px 20px 20px;
-        font-size:30px;
-    }
-    h5{
-        margin: 5px 50px 3px 20px;
-        font-size:15px;
     }
 `
 export const Button = styled.div`
