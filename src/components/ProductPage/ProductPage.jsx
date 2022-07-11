@@ -72,7 +72,7 @@ function ProductList({ list, index }) {
             <>
               <EachProduct key ={index}>
               <Image>
-                  <img src={product.image} alt="Girl in a jacket" />
+                  <img src={product.image} alt="imagem do produto"/>
               </Image>
               <h4>{product.name}</h4>
               <h5>R${product.price}</h5>

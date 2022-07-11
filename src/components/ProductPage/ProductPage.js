@@ -21,6 +21,7 @@ export const Imagem = styled.div`
     object-fit: cover;
   }
 `;
+
 export const Product = styled.div`
   margin-top: 15px;
   display: flex;
