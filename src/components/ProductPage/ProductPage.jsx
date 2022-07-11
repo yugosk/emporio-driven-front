@@ -4,43 +4,34 @@ import { useState, useEffect} from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Oval } from "react-loader-spinner";
+
 export default function ProductPage(){
-    const {product, category} = useParams()
+    const { product } = useParams()
     const [productRender, setProductRender] = useState([]);
     const [categoryRender, setcategoryRender] = useState([]);
-    const [quantity, setQuantity] = useState([])
+    const [quantity, setQuantity] = useState([]);
+
     async function getProducts() {
        try {
-        const response = await axios.get(`http://emporio-driven.herokuapp.com/${category}?/${product}`, {category, product});
-        setProductRender(response.data);
+        const response = await axios.get(`http://localhost:5000/produto/${product}`);
+        console.log(response.data);
+        setProductRender(response.data.product);
+        setcategoryRender(response.data.suggestions);
         } catch (error) {
          return error
        }
-       console.log(productRender.name)
       }
      useEffect(() => getProducts(), [product]);
-     async function getCategory() {
-      try {
-        const categoria = await axios.get(`http://emporio-driven.herokuapp.com/${category}`)
-       setcategoryRender(categoria.data)
-      } catch (error) {
-        return error
-       }
-    }
-    useEffect(() => getCategory(), [{category, product}]);
 
     function Comprar(){
-      if (quantity < 0){
-        alert("Digite um número maior que 1")
-      }
-
+      
     }
 
         return(
         <Container>
             <h1> 
                 <Link to={`/`} style={{ textDecoration: 'none' }}>Início/ </Link>
-                <Link to={`/`} style={{ textDecoration: 'none' }}>{category}/ </Link>
+                <Link to={`/${productRender.category}`} style={{ textDecoration: 'none' }}>{productRender.category}/ </Link>
                 {productRender.name}
             </h1>
           <Product>
@@ -55,7 +46,7 @@ export default function ProductPage(){
                 <Buy>
                     <h4>{productRender.inventory} em estoque</h4>
                     <Buy2>
-                     <input type="number" placeholder="0" min="0" onChange={e => setQuantity(e.target.value)}  value={quantity}/>
+                     <input type="number" placeholder="0" min="1" onChange={e => setQuantity(e.target.value)}  value={quantity}/>
                     <Button onClick={Comprar}>Comprar</Button>
                     </Buy2>
                   </Buy>
