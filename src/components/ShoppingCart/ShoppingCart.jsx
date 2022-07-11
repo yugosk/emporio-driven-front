@@ -9,7 +9,7 @@ import { TiDelete } from "react-icons/ti"
 
 export default function Cart() {
     const { user } = useContext(UserContext);
-    setTimeout(() => console.log(cart), 5000);
+    setTimeout(() => setCart(user.cart), 5000);
     const [cart, setCart] = useState([{
         name: "Dreher",
         price: 15.90,
