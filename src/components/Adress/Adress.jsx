@@ -4,8 +4,9 @@ import axios from 'axios';
 import { useState, useContext } from "react";
 import AdressContext from "../contexts/AdressContext";
 import { ThreeDots } from  'react-loader-spinner';
+
 export default function Adress(){
-    const {dados, setDados} = useContext(AdressContext);
+    const {dataadress, setDataAdress} = useContext(AdressContext);
     const navigate = useNavigate() 
     const [name, setName] =  useState();
     const [surname, setSurname] =  useState();
@@ -17,6 +18,10 @@ export default function Adress(){
     const [district, setDistrict] =  useState();
     const [city, setCity] =  useState();
     const [state, setState] =  useState();
+    const[cardNumber, setcardNumber] =  useState();
+    const [cardName, setCardName] =  useState();
+    const [cardvality, setCardVality] =  useState();
+    const[cardSecnumber, setCardSecnumber] =  useState();
     const [Loading, setLoading] = useState(false);
    
 
@@ -33,13 +38,17 @@ export default function Adress(){
             complement,
             district,
             city,
-            state
+            state,
+            cardNumber,
+            cardName, 
+            cardvality,
+            cardSecnumber
       }
       console.log(userData)
-         const promise = axios.post('http://emporio-driven.herokuapp.com/login',userData )
+         const promise = axios.post('http://localhost:5000//adress',userData )
          promise.then((response) => {
-            setDados(response.data);
-            const serializedUser = JSON.stringify(dados);
+            setDataAdress(response.data);
+            const serializedUser = JSON.stringify(dataadress);
             localStorage.setItem("user", serializedUser);
            navigate("/");
           });
@@ -78,12 +87,21 @@ export default function Adress(){
                         <input placeholder="" type="text"  onChange={e => setCity(e.target.value)}  value={city} disabled={Loading} required/>
                         <h5>Estado*</h5>
                         <input placeholder="" type="text" onChange={e => setState(e.target.value)}  value={state} disabled={Loading} required />
+                        <h5>Numero Cartao</h5>
+                        <input placeholder="" type="text" onChange={e => setcardNumber(e.target.value)}  value={cardNumber} disabled={Loading} />
+                        <h5>Nome no cartão*</h5>
+                        <input placeholder="" type="text"  onChange={e => setCardName(e.target.value)}  value={cardName} disabled={Loading} required/>
+                        <h5>Validade do cartão*</h5>
+                        <input placeholder="" type="text"  onChange={e => setCardVality(e.target.value)}  value={cardvality} disabled={Loading} required/>
+                        <h5>codigo de segurança*</h5>
+                        <input placeholder="" type="text"  onChange={e => setCardSecnumber(e.target.value)}  value={cardSecnumber} disabled={Loading} required/>
                         <button onClick={SendAdress}>{Loading ? 
                             (<ThreeDots color="#ffffff" height={25} width={316}/>) : 
                             ("Enviar")}
                         </button>
                         <h5>*dados obrigatórios</h5>
               </Login>
+              
         </Container>
     )
 }

@@ -8,23 +8,27 @@ import Adress from "./Adress/Adress.jsx";
 import Us from "./Us/Us.jsx";
 import AdressContext from "./contexts/AdressContext";
 import { useState } from "react";
+import UserContext from "./contexts/UserContext";
 
 export default function App() {
-  const [dados, setDados] = useState([]);
+  const [dataadress, setDataAdress] = useState([]);
+  const [dados, setDados] = useState([])
 
   return (
-    <AdressContext.Provider value={{dados, setDados}}>
+    <AdressContext.Provider value={{dataadress, setDataAdress}}>
+      <UserContext.Provider value={{dados, setDados}}>
     <BrowserRouter>
       <Header />
       <NavMenu />
         <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/minhaconta" element={<MyAcount />} />
-        <Route path="/endereco" element={<Adress />} />
+        <Route path="/dadoscompra" element={<Adress />} />
         <Route path="/quemsomos" element={<Us />} />
       </Routes>
       <ResetCSS />
     </BrowserRouter>
+    </UserContext.Provider>
     </AdressContext.Provider>
   );
 }

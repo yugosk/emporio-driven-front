@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import axios from 'axios';
 import { useState } from "react";
-import UserContext from "../../contexts/UserContext";
+import UserContext from "../contexts/UserContext";
 import { ThreeDots } from  'react-loader-spinner';
 export default function MyAcount(){
     const {dados, setDados} = useContext(UserContext);
@@ -26,11 +26,13 @@ export default function MyAcount(){
             password: cadastroPassword,
             password_confirmation: password_confirmation
         }
-        const promise = axios.post('http://emporio-driven.herokuapp.com/cadastrar', body)
+        console.log(body)
+        const promise = axios.post('http://localhost:5000/cadastrar', body)
         promise.then(() => navigate("/minhaconta"))
         promise.catch((e) => {
             alert("Campos invalidos, verifique preenchimento.");
             setLoading(false);
+            navigate("/minhaconta");
           });
        
     }
@@ -42,7 +44,7 @@ export default function MyAcount(){
             email: loginemail,
             password: loginpassword,
         }
-         const promise = axios.post('http://emporio-driven.herokuapp.com/login',dadosLogin )
+         const promise = axios.post('http://localhost:5000/login',dadosLogin )
          promise.then((response) => {
             setDados(response.data);
             const serializedUser = JSON.stringify(dados);
