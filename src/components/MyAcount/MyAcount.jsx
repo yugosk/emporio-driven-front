@@ -7,7 +7,7 @@ import UserContext from "../../contexts/UserContext";
 import { ThreeDots } from  'react-loader-spinner';
 
 export default function MyAcount(){
-    const {dados, setDados} = useContext(UserContext);
+    const { dados, setDados } = useContext(UserContext);
     const [loginemail, setloginEmail] =  useState();
     const [loginpassword, setloginPassword] =  useState();
     const [cadastroEmail, setcadastroEmail] =  useState();
@@ -45,7 +45,7 @@ export default function MyAcount(){
             email: loginemail,
             password: loginpassword,
         }
-         const promise = axios.post('http://localhost:5000/login',dadosLogin )
+         const promise = axios.post('https://emporio-driven.herokuapp.com/login',dadosLogin )
          promise.then((response) => {
             setDados(response.data);
             const serializedUser = JSON.stringify(dados);

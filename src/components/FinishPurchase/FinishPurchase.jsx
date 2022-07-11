@@ -13,8 +13,15 @@ export default function FinishPurchase() {
     const { dados } = useContext(UserContext);
     const { cart } = useContext(CartContext);
 
-    function finishPurchase() {
-        const response = await axios.post("");
+    async function finishPurchase() {
+        const response = await axios.post("https://emporio-driven.herokuapp.com/compras", cart, {
+            headers: {
+                "Authorization": `Bearer ${dados.token}`,
+                "email": `${dados.email}` 
+            }
+        });
+        console.log(response.data);
+        setTimeout(() => alert("Compra efetuada com sucesso!", 2000));
     }
 
     if (dados.length === 0 || dataadress.length === 0) {

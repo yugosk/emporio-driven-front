@@ -4,8 +4,10 @@ import axios from 'axios';
 import { useState, useContext } from "react";
 import AdressContext from "../../contexts/AdressContext"
 import { ThreeDots } from  'react-loader-spinner';
+import UserContext from "../../contexts/UserContext";
 
 export default function Adress(){
+    const { dados } = useContext(UserContext);
     const {dataadress, setDataAdress} = useContext(AdressContext);
     const navigate = useNavigate() 
     const [name, setName] =  useState();
@@ -45,7 +47,7 @@ export default function Adress(){
             cardSecnumber
       }
       console.log(userData)
-         const promise = axios.post('http://localhost:5000//adress',userData )
+         const promise = axios.post('https://emporio-driven.herokuapp.com/adress', userData)
          promise.then((response) => {
             setDataAdress(response.data);
             const serializedUser = JSON.stringify(dataadress);
