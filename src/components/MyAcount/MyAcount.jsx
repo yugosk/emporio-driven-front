@@ -7,7 +7,7 @@ import UserContext from "../../contexts/UserContext";
 import { ThreeDots } from  'react-loader-spinner';
 
 export default function MyAcount(){
-    const {dados, setDados} = useContext(UserContext);
+    const { dados, setDados } = useContext(UserContext);
     const [loginemail, setloginEmail] =  useState();
     const [loginpassword, setloginPassword] =  useState();
     const [cadastroEmail, setcadastroEmail] =  useState();

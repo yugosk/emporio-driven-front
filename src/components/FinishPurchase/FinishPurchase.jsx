@@ -14,7 +14,14 @@ export default function FinishPurchase() {
     const { cart } = useContext(CartContext);
 
     function finishPurchase() {
-        const response = await axios.post("");
+        const response = await axios.post("http://localhost:5000/compras", cart, {
+            headers: {
+                "Authorization": `Bearer ${dados.token}`,
+                "email": `${dados.email}` 
+            }
+        });
+        console.log(response.data);
+        setTimeout(() => alert("Compra efetuada com sucesso!", 2000));
     }
 
     if (dados.length === 0 || dataadress.length === 0) {
