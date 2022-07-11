@@ -9,7 +9,7 @@ import Us from "./Us/Us.jsx";
 import AdressContext from "../contexts/AdressContext";
 import UserContext from "../contexts/UserContext";
 import CartContext from "../contexts/CartContext";
-import Home from "./Home/Home";
+import Home from "./Home/Home.jsx";
 import CategoryPages from "./CategoryPages/CategoryPages.jsx";
 import Cart from "./ShoppingCart/ShoppingCart.jsx";
 import ProductPage from "./ProductPage/ProductPage.jsx";
