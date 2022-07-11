@@ -8,19 +8,18 @@ import CartContext from "../../contexts/CartContext.js";
 
 export default function Cart() {
     const { cart } = useContext(CartContext);
-    const [newCart, setCart] = useState([...cart]);
     
     return (
         <HomeContainer>
             <CartTitle>
                 <h1>Carrinho</h1>
             </CartTitle>
-            <CartDisplay list={cart} setCart={setCart} cart={cart} />
+            <CartDisplay list={cart} />
         </HomeContainer>
     );
 }
 
-function CartDisplay({ list, setCart, cart }) {
+function CartDisplay({ list }) {
     const navigate = useNavigate();
     function calculateTotal() {
         let sum = 0;
@@ -45,7 +44,7 @@ function CartDisplay({ list, setCart, cart }) {
             <>
                 <CartWrapper>
                     <CartTableTitles />
-                    <CartItems list={list} setCart={setCart} cart={cart} />
+                    <CartItems list={list} />
                 </CartWrapper>
                 <PurchaseWrapper>
                     <PurchaseContent>
@@ -76,18 +75,14 @@ function CartTableTitles() {
     );
 }
 
-function CartItems({ list, setCart, cart }) {
-    function removeFromCart(name) {
-        const newArray = cart.filter(item => item.name !== name);
-        setCart(newArray);
-    }
+function CartItems({ list }) {
 
     return (
         <>
             {list.map((item, index) => {
                 return (
                     <Row key={index}>
-                        <Dividers onClick={removeFromCart(item.name)}><TiDelete color="#bababa" size={"24px"} /></Dividers>
+                        <Dividers><TiDelete color="#bababa" size={"24px"} /></Dividers>
                         <Dividers><img src={item.image} /></Dividers>
                         <Dividers><em>{item.name}</em></Dividers>
                         <Dividers><em>R${item.price.toFixed(2)}</em></Dividers>

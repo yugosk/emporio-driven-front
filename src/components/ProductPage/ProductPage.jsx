@@ -17,7 +17,6 @@ export default function ProductPage(){
     async function getProducts() {
        try {
         const response = await axios.get(`https://emporio-driven.herokuapp.com/produto/${product}`);
-        console.log(response.data);
         setProductRender(response.data.product);
         setcategoryRender(response.data.suggestions);
         } catch (error) {
@@ -26,25 +25,20 @@ export default function ProductPage(){
       }
      useEffect(() => getProducts(), [product]);
 
-    function Comprar(name, quantity){
-      const auxArray = newCart.filter(item => item.name !== name);
-      if (auxArray.length !== newCart.length) {
-        for (let i=0; i<newCart.length; i++) {
-          if (newCart[i].name === name) {
-            let aux = newCart[i].quantity;
-            aux += quantity;
-            newCart[i].quantity = aux;
-          }
-        }
-      } else {
-        setNewCart(...newCart, {
-          name: productRender.name,
-          price: productRender.price,
-          image: productRender.image,
-          quantity: quantity
-        })
-      }
+   function comprar(quantity){
+    if (quantity > productRender.inventory) {
+      alert("Selecione um número menor que o estoque");
+    } else if (quantity < 1) {
+      alert("O número escolhido deve ser maior que 0");
+    } else {
+      setNewCart([...newCart, {
+        name: productRender.name,
+        image: productRender.image,
+        price: productRender.price,
+        quantity: quantity
+      }])
     }
+   }
 
         return(
         <Container>
@@ -65,8 +59,8 @@ export default function ProductPage(){
                 <Buy>
                     <h4>{productRender.inventory} em estoque</h4>
                     <Buy2>
-                     <input type="number" placeholder="0" min="1" max={productRender.inventory} onChange={e => setQuantity(e.target.value)}  value={quantity}/>
-                    <Button onClick={Comprar(product.name, quantity)}>Comprar</Button>
+                     <input type="number" placeholder="0" min="1" onChange={e => setQuantity(e.target.value)}  value={quantity}/>
+                    <Button onClick={() => comprar(quantity)}>Comprar</Button>
                     </Buy2>
                   </Buy>
               </Info>

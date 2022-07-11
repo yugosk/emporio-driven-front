@@ -2,11 +2,7 @@ import Logo from "../Logo/Logo.jsx";
 import { Link } from "react-router-dom";
 import { IoMdPerson, IoIosCart } from "react-icons/io";
 import{Container, Icon, Button, Search,Acount, Carts, WhiteFiller} from "./Header"
-import CartContext from "../../contexts/CartContext.js";
-import { useContext } from "react";
-
 export default function Header(){
-    const { cart } = useContext(CartContext);
      return(
         <Container>
              <Logo />
@@ -22,10 +18,11 @@ export default function Header(){
                         <h4>Faça seu login ou cadastre-se</h4>
                     </Acount>
                 </Link>
-             <Carts>
-                 <Icon><IoIosCart color="#ffffff" size={"24px"} /></Icon>
-                 <h4>R$</h4>
-            </Carts>
+                <Link to="/carrinho">
+                    <Carts>
+                        <Icon><IoIosCart color="#ffffff" size={"24px"} /></Icon>
+                    </Carts>
+                </Link>
             <WhiteFiller></WhiteFiller>
      </Container>
     )
