@@ -3,12 +3,13 @@ import styled from "styled-components";
 const HomeContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: calc(100vh - 65px);
   width: 100vw;
   background-color: #ffffff;
   align-items: center;
   justify-content: flex-start;
   padding-top: 25px;
+  margin-top: 130px;
 `;
 
 const ProductWrapper = styled.div`

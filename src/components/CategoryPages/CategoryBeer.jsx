@@ -3,11 +3,12 @@ import { Oval } from "react-loader-spinner";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { HomeBanner, HomeImage, StyledWrapper, StyledProduct, ProductWrapper, HomeContainer } from '../Home/Home.js';
+import { Link } from "react-router-dom";
   
 export default function Beer() {
     const [beerList, setBeerList] = useState([]);
     async function getBeerProducts() {
-        const response = await axios.get("http://emporio-driven.herokuapp.com/cerveja");
+        const response = await axios.get("https://emporio-driven.herokuapp.com/cerveja");
         setBeerList(response.data);
     }
 
@@ -35,9 +36,11 @@ function ProductList({ list }) {
           {list.map((product, index) => {
             return (
               <StyledProduct key={index}>
-                <img src={product.image} />
-                <p>{product.name}</p>
-                <em>R$ {product.price.toFixed(2)}</em>
+                <Link to={`/${product.category}/${product._id}`} style={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start", width: "100%", height: "100%", textDecoration: "none"}}>
+                  <img src={product.image} />
+                  <p>{product.name}</p>
+                  <em>R$ {product.price.toFixed(2)}</em>
+                </Link>
               </StyledProduct>
             );
           })}

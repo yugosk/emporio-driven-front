@@ -1,7 +1,7 @@
 import Logo from "../Logo/Logo.jsx";
 import { Link } from "react-router-dom";
 import { IoMdPerson, IoIosCart } from "react-icons/io";
-import{Container, Icon, Button, Search,Acount, Carts} from "./Header"
+import{Container, Icon, Button, Search,Acount, Carts, WhiteFiller} from "./Header"
 export default function Header(){
      return(
         <Container>
@@ -22,6 +22,7 @@ export default function Header(){
                  <Icon><IoIosCart color="#ffffff" size={"24px"} /></Icon>
                  <h4>R$</h4>
             </Carts>
+            <WhiteFiller></WhiteFiller>
      </Container>
     )
 }
