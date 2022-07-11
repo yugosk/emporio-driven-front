@@ -1,38 +1,38 @@
-import styled from "styled-components";
+import { Button, PurchaseContent, PurchaseWrapper, PurchaseSections, SubSection, CartTitle, CartWrapper, Row, Dividers } from "./ShoppingCart.js";
 import { useState, useContext } from "react";
 import UserContext from "../../contexts/UserContext";
 import { HomeContainer } from "../Home/Home.js";
 import { Link } from "react-router-dom";
 import { TiDelete } from "react-icons/ti"
+import { useNavigate } from "react-router-dom";
 
 
 
 export default function Cart() {
     const { user } = useContext(UserContext);
-    setTimeout(() => setCart(user.cart), 5000);
-    const [cart, setCart] = useState([{
-        name: "Dreher",
-        price: 15.90,
-        image: "https://images-americanas.b2w.io/produtos/2040108649/imagens/kit-conhaque-de-gengibre-dreher-900ml-2-unidades/2040108649_1_large.jpg",
-        quantity: 2
-    }, {
-        name: "Vinho",
-        price: 22.99,
-        image: "https://static.paodeacucar.com/img/uploads/1/840/579840.png",
-        quantity: 3 
-    }]);
-
+    const [cart, setCart] = useState([...user.cart]);
+    
     return (
         <HomeContainer>
             <CartTitle>
                 <h1>Carrinho</h1>
             </CartTitle>
-            <CartDisplay list={cart} />
+            <CartDisplay list={cart} setCart={setCart} cart={cart} />
         </HomeContainer>
     );
 }
 
-function CartDisplay({ list }) {
+function CartDisplay({ list, setCart, cart }) {
+    const navigate = useNavigate();
+    function calculateTotal() {
+        let sum = 0;
+        for (let i=0; i<list.length; i++) {
+            const price = list[i].price * list[i].quantity;
+            sum += price;
+        }
+        return sum;
+    }
+
     if (list.length === 0) {
         return (
             <CartWrapper>
@@ -47,16 +47,17 @@ function CartDisplay({ list }) {
             <>
                 <CartWrapper>
                     <CartTableTitles />
-                    <CartItems list={list} />
+                    <CartItems list={list} setCart={setCart} cart={cart} />
                 </CartWrapper>
                 <PurchaseWrapper>
                     <PurchaseContent>
                         <p>Total no carrinho</p>
                         <PurchaseSections>
-                            <SubSection><p>Subtotal</p></SubSection>
-                            <SubSection><p>Entrega</p></SubSection>
-                            <SubSection><p>Total</p></SubSection>
+                            <SubSection><p>Subtotal</p> <p>R$ {calculateTotal().toFixed(2)}</p></SubSection>
+                            <SubSection><p>Entrega</p> <p>R$ {(calculateTotal() > 300) ? "0,00" : "25,00"}</p></SubSection>
+                            <SubSection><p>Total</p> <em>R$ {(calculateTotal() > 300) ? calculateTotal() : calculateTotal() + 25}</em></SubSection>
                         </PurchaseSections>
+                        <Button onClick={() => navigate("/finalizar-compra")}>FINALIZAR COMPRA</Button>
                     </PurchaseContent>
                 </PurchaseWrapper>
             </>
@@ -77,13 +78,18 @@ function CartTableTitles() {
     );
 }
 
-function CartItems({ list }) {
+function CartItems({ list, setCart, cart }) {
+    function removeFromCart(name) {
+        const newArray = cart.filter(item => item.name !== name);
+        setCart(newArray);
+    }
+
     return (
         <>
             {list.map((item, index) => {
                 return (
                     <Row key={index}>
-                        <Dividers><TiDelete color="#bababa" size={"24px"} /></Dividers>
+                        <Dividers onClick={removeFromCart(item.name)}><TiDelete color="#bababa" size={"24px"} /></Dividers>
                         <Dividers><img src={item.image} /></Dividers>
                         <Dividers><em>{item.name}</em></Dividers>
                         <Dividers><em>R${item.price.toFixed(2)}</em></Dividers>
@@ -95,158 +101,3 @@ function CartItems({ list }) {
         </>
     );
 }
-
-const PurchaseWrapper = styled.div`
-    display: flex;
-    width: 90%;
-    background-color: pink;
-    margin-top: 50px;
-    flex-direction: row;
-    justify-content: flex-end;
-`
-
-const PurchaseContent = styled.div`
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    background-color: #f8f8f8;
-    border-radius: 5px;
-    border: 1px solid #787878;
-    padding: 25px;
-    box-sizing: border-box;
-
-    p {
-        color: #333e48;
-        font-family: "Rubik", sans-serif;
-        font-weight: 500;
-        font-size: 24px;
-        margin-bottom: 20px;
-    }
-`
-
-const PurchaseSections = styled.div`
-    box-sizing: border-box;
-    background-color: #ffffff;
-    border: 1px solid #787878;
-    display: flex;
-    flex-direction: column;
-    padding: 15px;
-    width: 100%;
-    border-radius: 5px;
-`
-
-const SubSection = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    box-sizing: border-box;
-    p {
-        color: #333e48;
-        font-family: "Rubik", sans-serif;
-        font-weight: 500;
-        font-size: 18px;
-        margin-bottom: 20px;
-    }
-`
-
-const CartTitle = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    width: 90%;
-    text-align: flex-start;
-    margin-top: 15px;
-    margin-bottom: 25px;
-
-    h1 {
-        color: #333e48;
-        font-family: "Rubik", sans-serif;
-        font-weight: 500;
-        font-size: 32px;
-    }
-`
-
-const CartWrapper = styled.div`
-    display: flex;
-    width: 90%;
-    flex-direction: column;
-    border: 1px solid #d9d9d9;
-    border-radius: 5px;
-    padding: 10px;
-    box-sizing: border-box;
-
-    p {
-        color: #333e48;
-        font-family: "Rubik", sans-serif;
-        font-weight: 400;
-        font-size: 24px;
-        line-height: 30px;
-    }
-`
-
-const Row = styled.div`
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    border-bottom: 1px solid #d9d9d9;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
-
-    &:last-child {
-        border: none;
-    }
-`
-
-const Dividers = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-
-    img {
-        width: 65%;
-        height: 65%;
-    }
-
-    em {
-        font-size: 18px;
-        font-weight: 300;
-        font-family: "Rubik", sans-serif;
-    }
-
-    p {
-        font-size: 20px;
-        font-weight: 400;
-    }
-
-    &:first-child {
-        width: 8%;
-    }
-
-    &:nth-child(2) {
-        width: 16%;
-    }
-
-    &:nth-child(3) {
-        width: 33%;
-    }
-
-    &:nth-child(4) {
-        width: 13%;
-    }
-
-    &:nth-child(5) {
-        width: 17%;
-    }
-
-    &:nth-child(6) {
-        width: 13%;
-    }
-
-`
