@@ -1,6 +1,6 @@
 import {Container, Imagem, Product, Button, Related, Details, Buy, Info, Buy2, RelatedProduct, Image,ButtonRelated, EachProduct} from "./ProductPage.js";
-import { Link } from "react-router-dom";
-import { useState, useEffect, useContext} from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import CartContext from "../../contexts/CartContext.js";
@@ -10,8 +10,9 @@ export default function ProductPage(){
     const [productRender, setProductRender] = useState([]);
     const [categoryRender, setcategoryRender] = useState([]);
     const [quantity, setQuantity] = useState([]);
-    const { cart } = useContext(CartContext);
-    const [newCart, setNewCart] = useState(cart);
+    const [enableBuy, setEnableBuy] = useState(true);
+    const { cart, setCart } = useContext(CartContext);
+    const navigate = useNavigate();
 
     async function getProducts() {
        try {
@@ -25,17 +26,24 @@ export default function ProductPage(){
      useEffect(() => getProducts(), [product]);
 
    function comprar(quantity){
-    if (quantity > productRender.inventory) {
-      alert("Selecione um número menor que o estoque");
-    } else if (quantity < 1) {
-      alert("O número escolhido deve ser maior que 0");
-    } else {
-      setNewCart([...newCart, {
-        name: productRender.name,
-        image: productRender.image,
-        price: productRender.price,
-        quantity: quantity
-      }])
+    if (enableBuy) {
+      if (quantity > productRender.inventory) {
+        alert("Selecione um número menor que o estoque");
+      } else if (quantity < 1) {
+        alert("O número escolhido deve ser maior que 0");
+      } else {
+        setCart([...cart, {
+          name: productRender.name,
+          image: productRender.image,
+          price: productRender.price,
+          quantity: quantity
+        }]);
+        setEnableBuy(false);
+        setTimeout(() => {
+          alert("Item adicionado ao carrinho com sucesso!");
+          navigate("/carrinho");
+        }, 3000);
+      }
     }
    }
 

@@ -7,30 +7,30 @@ export default function NavMenu(){
     return(
         <Container>
           <Content>
-                 <Link to={`/vinho`}>
-                    <Categories>
+                <Categories>
+                    <Link to="/vinho" style={{ textDecoration: "none" }}>
                         <Icon><IoMdWine color="#ffffff" size={"24px"} /></Icon>
                         <Cat>Vinho </Cat>
-                    </Categories>
-                </Link> 
-                <Link to={`/destilado`}>
-                    <Categories>
+                    </Link>
+                </Categories>
+                <Categories>
+                    <Link to="/destilado" style={{ textDecoration: "none" }}>
                         <Icon><GiBeerBottle color="#ffffff" size={"24px"} /></Icon>
                         <Cat>Destilados  </Cat>
-                    </Categories>
-                </Link> 
-                <Link to={`/espumante`}>
-                    <Categories>
+                    </Link>
+                </Categories>
+                <Categories>
+                    <Link to="/espumante" style={{ textDecoration: "none" }}>
                         <Icon><BiDrink color="#ffffff" size={"24px"} /></Icon>
                         <Cat>Espumantes  </Cat>
-                    </Categories>
-                </Link> 
-                <Link to={`/cerveja`}>
-                    <Categories>
+                    </Link>
+                </Categories>
+                <Categories>
+                    <Link to="/cerveja" style={{ textDecoration: "none" }}>
                         <Icon><IoMdBeer color="#ffffff" size={"24px"} /></Icon>
                         <Cat>Cervejas  </Cat>
-                    </Categories>
-                </Link> 
+                    </Link>
+                </Categories>
             </Content>
         </Container>
     )

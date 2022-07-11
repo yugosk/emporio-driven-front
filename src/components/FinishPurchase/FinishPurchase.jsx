@@ -9,29 +9,39 @@ import CartContext from "../../contexts/CartContext";
 import axios from "axios";
 
 export default function FinishPurchase() {
-    const { dataadress } = useContext(AdressContext);
     const { dados } = useContext(UserContext);
     const { cart } = useContext(CartContext);
+    const [cpf, setCpf] = useState(null);
 
-    function finishPurchase() {
-        const response = await axios.post("");
+    async function finishPurchase() {
+        const cpfRegex = /^[0-9]+$/;
+        if (cpfRegex.test(cpf) && cpf.length === 11) {
+            const promise = axios.post("https://emporio-driven.herokuapp.com/compras", cart, {
+                headers: {
+                    "Authorization": `Bearer ${dados.token}`,
+                    "cpf": `${cpf}` 
+                }
+            });
+            promise.then((res) => {
+                alert("Compra efetuada com sucesso!");
+            })
+            promise.catch((err) => {
+                alert("Verifique se os dados de pagamento e entrega estão cadastrados!");
+            })
+        } else {
+            alert("Preencha o CPF adequadamente!");
+        }
     }
-
-    if (dados.length === 0 || dataadress.length === 0) {
-        return (
-            <HomeContainer>
-                <Link to={"/dadoscompra"} style={{textDecoration: "none"}}>
-                    <h1>Preencha os dados de cobrança e de entrega adequadamente!</h1>
-                </Link>
-            </HomeContainer>
-        )
-    } else {
         return (
             <HomeContainer>
                 <h1>Deseja realmente finalizar a sua compra?</h1>
+                <input
+                type="string"
+                placeholder="CPF"
+                value={cpf}
+                onChange={e => setCpf(e.target.value)} />
                 <Button onClick={finishPurchase}>Sim!</Button>
             </HomeContainer>
         );
-    }
 }
 
