@@ -14,6 +14,8 @@ import CategoryPages from "./CategoryPages/CategoryPages.jsx";
 import Cart from "./ShoppingCart/ShoppingCart.jsx";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 
+import Home from "./Home";
+import ProductPage from "./ProductPage/ProductPage.jsx";
 export default function App() {
   const [dataadress, setDataAdress] = useState([]);
   const [dados, setDados] = useState([]);
@@ -33,6 +35,7 @@ export default function App() {
               <Route path="/quemsomos" element={<Us />} />
               <Route path="/:category" element={<CategoryPages />} />
               <Route path="/carrinho" element={<Cart />} />
+              <Route path="/:category/:product" element={<ProductPage />} />
             </Routes>
             <ResetCSS />
           </BrowserRouter>
@@ -41,3 +44,5 @@ export default function App() {
     </AdressContext.Provider>
   );
 }
+
+
