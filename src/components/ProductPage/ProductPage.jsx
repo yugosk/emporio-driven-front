@@ -11,27 +11,30 @@ export default function ProductPage(){
     const [quantity, setQuantity] = useState([])
     async function getProducts() {
        try {
-        const response = await axios.get(`http://emporio-driven.herokuapp.com/${category}?/${product}`, {category, product});
-        setProductRender(response.data);
+        const response = await axios.get(`http://localhost:5000/?${category}/${product}`);
+        setProductRender(...response.data);
         } catch (error) {
          return error
        }
-       console.log(productRender.name)
+       console.log(productRender)
       }
-     useEffect(() => getProducts(), [product]);
+     useEffect(() => getProducts(), [product, category]);
      async function getCategory() {
       try {
-        const categoria = await axios.get(`http://emporio-driven.herokuapp.com/${category}`)
+        const categoria = await axios.get(`http://localhost:5000/${category}`)
        setcategoryRender(categoria.data)
       } catch (error) {
         return error
        }
     }
-    useEffect(() => getCategory(), [{category, product}]);
+    useEffect(() => getCategory(), [{category}]);
 
     function Comprar(){
       if (quantity < 0){
         alert("Digite um número maior que 1")
+      }
+      if (quantity > productRender.inventory){
+        alert("Digite um número menor que o estoque")
       }
 
     }
@@ -81,7 +84,7 @@ function ProductList({ list, index }) {
             <>
               <EachProduct key ={index}>
               <Image>
-                  <img src={product.image} alt="Girl in a jacket" />
+                  <img src={product.image} alt="imagem do produto"/>
               </Image>
               <h4>{product.name}</h4>
               <h5>R${product.price}</h5>

@@ -11,8 +11,11 @@ export const Container = styled.div`
 `
 export const Imagem = styled.div`
 background-color:#F5F5F0;
-    width: 300px;
-    height: 420px;
+    
+    img{
+        width: 450px;
+    
+    }
 `
 export const Product = styled.div`
     margin-top:15px;
