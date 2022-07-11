@@ -28,7 +28,7 @@ export default function MyAcount(){
             password_confirmation: password_confirmation
         }
         console.log(body)
-        const promise = axios.post('http://localhost:5000/cadastrar', body)
+        const promise = axios.post('https://emporio-driven.herokuapp.com/cadastrar', body)
         promise.then(() => navigate("/minhaconta"))
         promise.catch((e) => {
             alert("Campos invalidos, verifique preenchimento.");
@@ -45,7 +45,7 @@ export default function MyAcount(){
             email: loginemail,
             password: loginpassword,
         }
-         const promise = axios.post('http://localhost:5000/login',dadosLogin )
+         const promise = axios.post('https://emporio-driven.herokuapp.com/login',dadosLogin )
          promise.then((response) => {
             setDados(response.data);
             const serializedUser = JSON.stringify(dados);
