@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 export default function Sparkling() {
     const [sparklingList, setSparklingList] = useState([]);
     async function getSparklingProducts() {
-        const response = await axios.get("https://emporio-driven.herokuapp.com/espumante");
+        const response = await axios.get("https://emporio-driven.herokuapp.com/categoria/espumante");
         setSparklingList(response.data);
     }
 

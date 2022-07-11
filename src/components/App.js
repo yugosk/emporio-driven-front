@@ -13,9 +13,8 @@ import Home from "../components/Home/Home.jsx";
 import CategoryPages from "./CategoryPages/CategoryPages.jsx";
 import Cart from "./ShoppingCart/ShoppingCart.jsx";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-
-import Home from "./Home";
 import ProductPage from "./ProductPage/ProductPage.jsx";
+
 export default function App() {
   const [dataadress, setDataAdress] = useState([]);
   const [dados, setDados] = useState([]);
@@ -44,5 +43,3 @@ export default function App() {
     </AdressContext.Provider>
   );
 }
-
-

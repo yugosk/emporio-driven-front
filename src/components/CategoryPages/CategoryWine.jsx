@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 export default function Wine() {
     const [wineList, setWineList] = useState([]);
     async function getWineProducts() {
-        const response = await axios.get("https://emporio-driven.herokuapp.com/vinho");
+        const response = await axios.get("https://emporio-driven.herokuapp.com/categoria/vinho");
         setWineList(response.data);
     }
 

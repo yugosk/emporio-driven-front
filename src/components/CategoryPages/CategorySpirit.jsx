@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 export default function Spirit() {
     const [spiritList, setSpiritList] = useState([]);
     async function getSpiritProducts() {
-        const response = await axios.get("https://emporio-driven.herokuapp.com/destilado");
+        const response = await axios.get("https://emporio-driven.herokuapp.com/categoria/destilado");
         setSpiritList(response.data);
     }
 

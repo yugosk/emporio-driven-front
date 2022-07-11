@@ -2,7 +2,7 @@ import {Container, Login, Button} from "./Adress";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { useState, useContext } from "react";
-import AdressContext from "../contexts/AdressContext";
+import AdressContext from "../../contexts/AdressContext"
 import { ThreeDots } from  'react-loader-spinner';
 
 export default function Adress(){

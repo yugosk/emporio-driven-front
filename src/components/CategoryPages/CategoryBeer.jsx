@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 export default function Beer() {
     const [beerList, setBeerList] = useState([]);
     async function getBeerProducts() {
-        const response = await axios.get("https://emporio-driven.herokuapp.com/cerveja");
+        const response = await axios.get("https://emporio-driven.herokuapp.com/categoria/cerveja");
         setBeerList(response.data);
     }
 

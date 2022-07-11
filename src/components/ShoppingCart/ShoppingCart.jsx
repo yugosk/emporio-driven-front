@@ -1,14 +1,14 @@
 import { Button, PurchaseContent, PurchaseWrapper, PurchaseSections, SubSection, CartTitle, CartWrapper, Row, Dividers } from "./ShoppingCart.js";
 import { useState, useContext } from "react";
-import UserContext from "../../contexts/UserContext";
 import { HomeContainer } from "../Home/Home.js";
 import { Link } from "react-router-dom";
 import { TiDelete } from "react-icons/ti"
 import { useNavigate } from "react-router-dom";
+import CartContext from "../../contexts/CartContext.js";
 
 export default function Cart() {
-    const { user } = useContext(UserContext);
-    const [cart, setCart] = useState([...user.cart]);
+    const { cart } = useContext(CartContext);
+    const [newCart, setCart] = useState([...cart]);
     
     return (
         <HomeContainer>
