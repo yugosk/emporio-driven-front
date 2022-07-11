@@ -3,7 +3,8 @@ import { useState } from "react";
 import ResetCSS from "../styles/ResetCSS";
 import Header from "./Header/Header.jsx";
 import NavMenu from "./Navbar/Nav_menu.jsx";
-import MyAcount from "./MyAcount/MyAcount.jsx";
+import MyAcountLogin from "./MyAcount/MyAcountLogin";
+import MyAcountcadastro from "./MyAcount/MyacountCadastro.jsx";
 import Adress from "./Adress/Adress.jsx";
 import Us from "./Us/Us.jsx";
 import AdressContext from "../contexts/AdressContext";
@@ -29,7 +30,8 @@ export default function App() {
             <NavMenu />
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/minhaconta" element={<MyAcount />} />
+              <Route path="/login" element={<MyAcountLogin />} />
+              <Route path="/cadastro" element={<MyAcountcadastro />} />
               <Route path="/dadoscompra" element={<Adress />} />
               <Route path="/quemsomos" element={<Us />} />
               <Route path="/:category" element={<CategoryPages />} />

@@ -6,37 +6,13 @@ import { useState } from "react";
 import UserContext from "../../contexts/UserContext";
 import { ThreeDots } from  'react-loader-spinner';
 
-export default function MyAcount(){
+export default function MyAcountLogin(){
     const {dados, setDados} = useContext(UserContext);
     const [loginemail, setloginEmail] =  useState();
     const [loginpassword, setloginPassword] =  useState();
-    const [cadastroEmail, setcadastroEmail] =  useState();
-    const [cadastroPassword, setCadastroPassword] =  useState();
-    const [cadastroName, setCadastroName] = useState([]);
-    const [password_confirmation, setpassword_confirmation] = useState([]);
     const [Loading, setLoading] = useState(false);
     const navigate = useNavigate();
-    
    
-    function singUp(event){
-        event.preventDefault();
-        setLoading(true);
-        const body = {
-            name: cadastroName,           
-            email: cadastroEmail,
-            password: cadastroPassword,
-            password_confirmation: password_confirmation
-        }
-        console.log(body)
-        const promise = axios.post('https://emporio-driven.herokuapp.com/cadastrar', body)
-        promise.then(() => navigate("/minhaconta"))
-        promise.catch((e) => {
-            alert("Campos invalidos, verifique preenchimento.");
-            setLoading(false);
-            navigate("/minhaconta");
-          });
-       
-    }
 
     function Login(e){
         setLoading(true);
@@ -78,22 +54,11 @@ export default function MyAcount(){
                             ("Acessar")}
                         </button>
                     </Box>
-                    <Box>
-                        <h4>Cadastre-se</h4>
-                        <h5>Nome de usuário*</h5>    
-                        <input placeholder="" type="text"  onChange={e => setCadastroName(e.target.value)}  value={cadastroName} disabled={Loading} required />
-                        <h5>Nome de usuário ou e-mail *</h5>
-                        <input placeholder="" type="email" onChange={e => setcadastroEmail(e.target.value)}  value={cadastroEmail} disabled={Loading} required />
-                        <h5>Senha *</h5>
-                        <input placeholder="" type="password" onChange={e => setCadastroPassword(e.target.value)}  value={cadastroPassword} disabled={Loading} required />
-                        <h5>Confirme sua senha *</h5>
-                        <input placeholder="" type="password"  onChange={e => setpassword_confirmation(e.target.value)}  value={password_confirmation} disabled={Loading} required/>
-                        <button onClick={singUp}>{Loading ? 
-                            (<ThreeDots color="#ffffff" height={25} width={316}/>) : 
-                            ("Cadastre-se")}
-                        </button>
-                    </Box>
+                    
                 </Loginrender>
+                <Link to={`/cadastro`}>
+            <h4>Primeira vez? Cadastre-se!</h4>
+		 </Link>
                 <Registration>
                 </Registration>
         </Container>

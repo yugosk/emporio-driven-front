@@ -6,16 +6,13 @@ export default function Header(){
      return(
         <Container>
              <Logo />
-                <Search>
-                    <input placeholder="Pesquisar produto ..." type="text" />
-                     <Button>Buscar</Button>
-                </Search>
-                   <Link to={`/minhaconta`} style={{ textDecoration: 'none' }}>
+                <>                   
+                <Link to={`/login`} style={{ textDecoration: 'none' }}>
                 <Acount>
                     <Icon>
                         <IoMdPerson color="#ffffff" size={"24px"} />
                     </Icon>
-                        <h4>Faça seu login ou cadastre-se</h4>
+                        <h4>Faça seu login</h4>
                     </Acount>
                 </Link>
                 <Link to="/carrinho">
@@ -23,6 +20,8 @@ export default function Header(){
                         <Icon><IoIosCart color="#ffffff" size={"24px"} /></Icon>
                     </Carts>
                 </Link>
+                </>
+
             <WhiteFiller></WhiteFiller>
      </Container>
     )
