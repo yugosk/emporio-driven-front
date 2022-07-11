@@ -3,7 +3,7 @@ import UserContext from "../../contexts/UserContext";
 import AdressContext from "../../contexts/AdressContext";
 import { useContext, useState } from "react";
 import { HomeContainer } from "../Home/Home";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../ShoppingCart/ShoppingCart.js";
 import CartContext from "../../contexts/CartContext";
 import axios from "axios";
@@ -12,6 +12,7 @@ export default function FinishPurchase() {
     const { dados } = useContext(UserContext);
     const { cart } = useContext(CartContext);
     const [cpf, setCpf] = useState(null);
+    const navigate = useNavigate();
 
     async function finishPurchase() {
         const cpfRegex = /^[0-9]+$/;
@@ -27,6 +28,7 @@ export default function FinishPurchase() {
             })
             promise.catch((err) => {
                 alert("Verifique se os dados de pagamento e entrega estão cadastrados!");
+                navigate("/dadoscompra");
             })
         } else {
             alert("Preencha o CPF adequadamente!");
