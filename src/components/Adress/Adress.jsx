@@ -52,7 +52,7 @@ export default function Adress(){
             setDataAdress(response.data);
             const serializedUser = JSON.stringify(dataadress);
             localStorage.setItem("user", serializedUser);
-           navigate("/");
+           navigate("/finalizar-compra");
           });
          promise.catch((e) => {
             alert("Dados incompletos, verifique preenchimento");

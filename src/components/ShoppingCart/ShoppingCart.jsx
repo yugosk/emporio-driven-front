@@ -54,7 +54,7 @@ function CartDisplay({ list }) {
                             <SubSection><p>Entrega</p> <p>R$ {(calculateTotal() > 300) ? "0,00" : "25,00"}</p></SubSection>
                             <SubSection><p>Total</p> <em>R$ {(calculateTotal() > 300) ? calculateTotal() : (calculateTotal() + 25).toFixed(2)}</em></SubSection>
                         </PurchaseSections>
-                        <Button onClick={() => navigate("/finalizar-compra")}>FINALIZAR COMPRA</Button>
+                        <Button onClick={() => navigate("/dadoscompra")}>FINALIZAR COMPRA</Button>
                     </PurchaseContent>
                 </PurchaseWrapper>
             </>
