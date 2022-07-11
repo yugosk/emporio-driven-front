@@ -11,6 +11,7 @@ export default function ProductPage(){
     const [productRender, setProductRender] = useState([]);
     const [categoryRender, setcategoryRender] = useState([]);
     const [quantity, setQuantity] = useState([]);
+    const [enableBuy, setEnableBuy] = useState(true);
     const { cart, setCart } = useContext(CartContext);
     const navigate = useNavigate();
 
@@ -26,21 +27,24 @@ export default function ProductPage(){
      useEffect(() => getProducts(), [product]);
 
    function comprar(quantity){
-    if (quantity > productRender.inventory) {
-      alert("Selecione um número menor que o estoque");
-    } else if (quantity < 1) {
-      alert("O número escolhido deve ser maior que 0");
-    } else {
-      setCart([...cart, {
-        name: productRender.name,
-        image: productRender.image,
-        price: productRender.price,
-        quantity: quantity
-      }]);
-      setTimeout(() => {
-        alert("Item adicionado ao carrinho com sucesso!");
-        navigate("/carrinho");
-      }, 3000);
+    if (enableBuy) {
+      if (quantity > productRender.inventory) {
+        alert("Selecione um número menor que o estoque");
+      } else if (quantity < 1) {
+        alert("O número escolhido deve ser maior que 0");
+      } else {
+        setCart([...cart, {
+          name: productRender.name,
+          image: productRender.image,
+          price: productRender.price,
+          quantity: quantity
+        }]);
+        setEnableBuy(false);
+        setTimeout(() => {
+          alert("Item adicionado ao carrinho com sucesso!");
+          navigate("/carrinho");
+        }, 3000);
+      }
     }
    }
 
